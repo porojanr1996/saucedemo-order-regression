@@ -60,7 +60,7 @@ def page(browser_context) -> Page:
 
 @pytest.fixture
 def authenticated_page(page: Page) -> Page:
-    """Fresh browser session logged in as standard_user on inventory."""
+    """New session: `standard_user` on inventory."""
     login = LoginPage(page)
     login.open()
     login.login_as_standard_user()
@@ -85,5 +85,4 @@ def pytest_runtest_makereport(item, call):
     try:
         pg.screenshot(path=str(target), full_page=True)
     except Exception:
-        # Best-effort: never mask the original assertion failure.
         pass

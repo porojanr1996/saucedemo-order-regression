@@ -1,4 +1,4 @@
-"""Checkout step one (Your information) — field validation is cheap to automate and expensive when it breaks."""
+"""Checkout step one: required-field validation."""
 
 from __future__ import annotations
 

@@ -1,8 +1,4 @@
-"""Credentials, catalog slugs, and copy we assert against.
-
-Sauce Demo is public training data; still keep secrets out of page objects
-so swapping environments (staging mock) stays trivial.
-"""
+"""Test users, product keys, and UI strings for assertions."""
 
 from dataclasses import dataclass
 

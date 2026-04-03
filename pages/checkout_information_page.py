@@ -23,7 +23,7 @@ class CheckoutInformationPage(BasePage):
         self.wait_url("**/checkout-step-two.html")
 
     def attempt_continue_expecting_inline_error(self) -> None:
-        """Submit an invalid form; page stays on step one and shows [data-test=error]."""
+        """Clicks Continue with invalid form; expects inline `[data-test=error]`."""
         self.by_test_id("continue").click()
 
     def cancel(self) -> None:

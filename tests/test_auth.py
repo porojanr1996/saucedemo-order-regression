@@ -1,4 +1,4 @@
-"""Login and session gates — you cannot place an order without a valid account."""
+"""Login and session: invalid or blocked users cannot reach the shop."""
 
 from __future__ import annotations
 

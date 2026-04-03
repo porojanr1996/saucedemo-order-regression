@@ -18,7 +18,7 @@ def add_product_and_open_cart(page: Page, product_slug: str = PRODUCT_BACKPACK) 
 
 
 def complete_checkout_from_cart(page: Page, shipping: CustomerInfo) -> OrderCompletePage:
-    """Cart → Your information → Overview → Complete."""
+    """Cart, customer info, overview, complete."""
     cart = CartPage(page)
     cart.checkout()
     info = CheckoutInformationPage(page)

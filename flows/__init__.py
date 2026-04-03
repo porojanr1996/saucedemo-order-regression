@@ -1,1 +1,1 @@
-"""User-journey helpers composed from page objects."""
+"""Journey helpers built from page objects."""

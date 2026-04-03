@@ -1,14 +1,14 @@
 # Sauce Demo — order placement automation
 
-End-to-end and regression checks for [Sauce Demo](https://www.saucedemo.com/): login, cart, checkout step one, overview totals, and confirmation.
+Regression and E2E tests for [Sauce Demo](https://www.saucedemo.com/): authentication, cart, checkout (step one), overview totals, order confirmation.
 
-## What you get
+## Structure
 
-- **Page Object Model** (`pages/`) — UI changes land in one place per screen, not scattered through tests.
-- **Thin flows** (`flows/order_flow.py`) — composes pages for the “happy path” without hiding assertions.
-- **Central test data** (`config/test_data.py`) — users, product slugs, and expected copy.
-- **Pytest markers** — `smoke` vs `regression`, plus `auth` for access-control cases.
-- **Failure screenshots** — on assertion failure, a PNG is written under `artifacts/screenshots/` (gitignored).
+- `pages/` — Page Object Model, `data-test` selectors
+- `flows/order_flow.py` — reusable checkout sequence
+- `config/test_data.py` — users, products, expected strings
+- Pytest markers: `smoke`, `regression`, `auth`
+- Failed tests: PNG under `artifacts/screenshots/` (ignored in git)
 
 ## Setup
 
@@ -27,30 +27,30 @@ pytest tests/ -v -m smoke
 pytest tests/ -v -m "regression and not smoke"
 ```
 
-**Headed debugging** (watch the browser):
+Headed (visible browser):
 
 ```bash
 HEADED=1 pytest tests/test_order_e2e.py::test_smoke_single_item_happy_path -v
 ```
 
-**Optional video** (per run):
+Video recording:
 
 ```bash
 PW_VIDEO_DIR=artifacts/videos pytest tests/ -v
 ```
 
-The target URL is `base_url` in `pytest.ini` (overridable with pytest-base-url’s usual mechanisms if you add them).
+Base URL: `pytest.ini` → `base_url`.
 
-## Layout
+## Paths
 
-| Path | Role |
-|------|------|
+| Path | Purpose |
+|------|---------|
 | `config/settings.py` | Timeouts |
-| `config/test_data.py` | Users, `CustomerInfo`, catalog keys, message literals |
-| `pages/` | One class per major UI state |
-| `flows/` | Short user-journey helpers |
-| `tests/` | Specs only — no selectors here |
+| `config/test_data.py` | Users, `CustomerInfo`, catalog keys, literals |
+| `pages/` | Screen-level page objects |
+| `flows/` | Journey helpers |
+| `tests/` | Test modules |
 
-## CI note
+## CI
 
-Install browsers in the job (`playwright install chromium --with-deps` on Linux). Keep `pythonpath = .` in `pytest.ini` so `config` and `pages` resolve without installing a package.
+Install browsers in the job, e.g. `playwright install chromium --with-deps` on Linux. `pythonpath = .` in `pytest.ini` resolves `config` and `pages` without a package install.

@@ -1,4 +1,4 @@
-"""End-to-end purchase journeys — what release sign-off usually hinges on."""
+"""End-to-end purchase flows."""
 
 from __future__ import annotations
 

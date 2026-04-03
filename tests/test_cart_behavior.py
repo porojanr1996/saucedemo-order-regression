@@ -1,4 +1,4 @@
-"""Cart interactions and navigation around checkout — where a lot of real defects hide."""
+"""Cart, checkout navigation, and empty-cart behavior."""
 
 from __future__ import annotations
 
@@ -48,10 +48,7 @@ def test_continue_shopping_returns_to_product_grid(authenticated_page):
 
 
 def test_empty_cart_still_allows_checkout_today(authenticated_page):
-    """Known product behavior on Sauce Demo: zero line items can still complete.
-
-    If the business later blocks this, this test becomes the contract you update on purpose.
-    """
+    """Sauce Demo currently allows checkout with zero cart lines; update if product rules change."""
     inv = InventoryPage(authenticated_page)
     inv.open_cart()
     cart = CartPage(authenticated_page)
